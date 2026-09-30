@@ -3,7 +3,7 @@
 
 이 저장소는 **진행 중인 Case #01 연구**다. 실제 엔터프라이즈 ETL/Batch 성능 문제를 경험하면서 시작된 질문과 문제 해결 과정을 작업증명(Proof of Work)으로 남기려 한다.
 
-현재 단계는 **STEP -1 — Origin**이다. 프로젝트를 시작하는 이유, 현재의 커리어 가설, 기록 방식과 Human + AI 협업 원칙을 남긴다. 이 저장소에서는 아직 구현, 측정, 실험 또는 성능 개선 검증을 수행하지 않았다.
+**STEP 0 — Project Foundation**까지 완료했으며 STEP 1은 아직 시작하지 않았다. 재현 가능한 최소 Spring Boot 기반과 Oracle 실험환경을 구성하고 실제 Build/Test/Run을 확인했다. ETL 기능, 측정, 실험 또는 성능 개선 검증은 아직 수행하지 않았다.
 
 ## 시작 기록
 
@@ -11,6 +11,8 @@
 - [커리어 가설](docs/origin/career-hypothesis.md)
 - [Proof of Work에 대한 현재 생각](docs/origin/proof-of-work-philosophy.md)
 - [Human + AI 협업 원칙](docs/origin/human-ai-collaboration.md)
+- [CASE #01 전체 Roadmap](docs/roadmap.md)
+- [Project Foundation](docs/foundation/project-foundation.md)
 - [Research Journal](JOURNAL.md)
 
 ## 앞으로의 방향

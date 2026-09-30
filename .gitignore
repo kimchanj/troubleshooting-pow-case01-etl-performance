@@ -1,0 +1,22 @@
+# Build output
+**/target/
+
+# Local IDE state
+.vscode/
+.idea/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+**/application-local.properties
+**/application-local.yml
+**/application-local.yaml
+**/application-secret.properties
+**/application-secret.yml
+**/application-secret.yaml
+
+# Runtime artifacts
+*.log
+*.pid
+hs_err_pid*

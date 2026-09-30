@@ -40,3 +40,43 @@ AI 사용도 기록의 일부로 남긴다. 이번 단계에서는 내가 제공
 공개 가능한 ETL 성능 문제에서 관찰과 측정을 통해 원인을 좁히는 과정을 설명할 수 있는지 확인하고 싶다. 실패한 가설을 수정한 이유와 결과를 검증한 근거까지 남길 수 있는지도 보고 싶다. 구체적인 실험, 성공 기준, 플랫폼과 도구는 아직 정하지 않았다.
 
 이번 STEP -1에서는 Origin 문서와 이 첫 기록을 남긴다. 소스 코드 구현, 환경 구축, 성능 실험은 시작하지 않는다. 다음 단계의 범위와 결정 사항은 별도로 정한다.
+
+## 2026-09-30 — STEP 0: Top-down Roadmap
+
+STEP 0을 시작하면서 개별 환경과 기술 선택에 들어가기 전에 CASE #01 전체에서 현재 위치를 잃지 않기 위한 Top-down Roadmap을 만들었다. 각 STEP의 목적뿐 아니라 하지 않을 일과 다음 STEP으로 이어지는 관계를 함께 기록했다.
+
+Roadmap은 미래 결과를 확정하는 계획서가 아니다. 현재 계획된 cache, batch, Oracle 진단과 transaction 검증은 앞선 evidence가 해당 방향을 지지할 때 수행할 후보들이다. 관찰과 실험 결과가 계획과 맞지 않으면 이전 단계로 돌아가거나 Roadmap을 수정하며, 중요한 변경 이유는 이 Journal에 남긴다.
+
+현재 상태는 STEP -1 완료, STEP 0 진행 중, STEP 1부터 STEP 16까지 시작 전이다. STEP 0의 환경과 재현성 원칙은 아직 별도로 결정해야 하며, STEP 1은 시작하지 않았다.
+
+## 2026-10-01 — STEP 0: Project Foundation 확정
+
+### 목적과 실제 환경
+
+이후 실험을 같은 조건에서 다시 실행할 수 있도록 최소 개발·실험 기반을 만들었다. 조사 당시 Java, Maven, Oracle, DBeaver와 container runtime은 설치되어 있지 않았다. Windows 10 Pro 22H2 x64와 기존 VS Code 환경은 유지했다.
+
+사용자와 논의한 뒤 Eclipse Temurin JDK 21, Maven Wrapper, Spring Boot 3.5.x, MyBatis 3.x, Oracle JDBC, JUnit, Windows native Oracle AI Database Free와 DBeaver Community를 선택했다. Docker와 Podman은 이번 Case에서 사용하지 않기로 했다.
+
+실제 설치·구성된 주요 버전은 Temurin 21.0.12.1+1 LTS, Maven Wrapper 3.3.4가 받는 Apache Maven 3.9.16, Spring Boot 3.5.16, MyBatis Starter 3.0.5, Oracle JDBC 23.26.3.0.0, Oracle AI Database 26ai Free binary 23.26.0.0.0, DBeaver Community 26.2.1이다.
+
+### 선택 이유와 대안
+
+Maven은 시스템에 별도로 설치하지 않고 Wrapper로 버전과 실행 방식을 저장소에 고정했다. Oracle 측 evidence를 다룰 계획이므로 H2로 대체하지 않았다. 현재 PC에 container runtime이 없고 Windows native 설치 방향을 선택했기 때문에 Docker도 추가하지 않았다. Spring Batch는 아직 필요성이 확인되지 않아 제외했다.
+
+공식 Spring Initializr의 현재 기본 목록은 Spring Boot 4.x로 이동했지만, 이번 Case에서 확정한 3.5.x와 MyBatis 3.x 호환 조합을 유지했다. 애플리케이션은 연구 문서와 실행 코드를 분리하기 위해 `app/`에 두었다.
+
+### 설치 중 수정한 판단
+
+첫 Oracle 설치 시도에서 선행 Visual C++ Runtime 업데이트가 Windows 재시작을 요구해 설치가 중단되었다. 로그의 restart-required 결과를 확인한 뒤 Windows를 재시작하고 Oracle 설치를 다시 진행했다. 두 번째 시도에서 database service와 listener가 정상 생성되었다.
+
+Oracle AI Database 26ai Free는 실무 Oracle 19c와 버전·optimizer·기능·patch 수준이 다르며, 2 CPU, 2 GB database memory, 12 GB user data 제한이 있다. 이 차이와 제한을 이후 성능 결과의 실험환경 제약으로 기록하기로 했다.
+
+### 실제 검증
+
+Maven Wrapper에서 `clean verify`를 실행해 build 성공과 JUnit context test 통과를 확인했다. `spring-boot:run`으로 Spring Boot 3.5.16 애플리케이션이 Java 21에서 시작되고 오류 없이 정상 종료하는 것도 확인했다.
+
+Oracle에서는 `OracleServiceFREE`와 listener 실행을 확인했고 listener에 `FREE`와 `freepdb1` 서비스가 `READY` 상태로 등록되었다. 설치 직후 현재 Codex 프로세스의 로그인 토큰에는 새 `ORA_DBA` 그룹이 반영되지 않아 SQL*Plus 로컬 OS 인증은 확인하지 못했다. 비밀번호를 Codex나 저장소에 전달하지 않았다.
+
+### 다음 STEP으로 넘기는 질문
+
+아직 정하지 않은 것은 synthetic ETL target의 구조, application 전용 Oracle schema와 최소 권한, credential 주입 방식, dataset 규모와 생성 규칙, baseline 측정 기준이다. 이 질문들은 STEP 1 이후 evidence가 필요한 시점에 다룬다. STEP 1의 설계나 ETL 기능 구현은 시작하지 않았다.
