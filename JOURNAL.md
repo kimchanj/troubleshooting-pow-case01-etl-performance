@@ -80,3 +80,33 @@ Oracle에서는 `OracleServiceFREE`와 listener 실행을 확인했고 listener�
 ### 다음 STEP으로 넘기는 질문
 
 아직 정하지 않은 것은 synthetic ETL target의 구조, application 전용 Oracle schema와 최소 권한, credential 주입 방식, dataset 규모와 생성 규칙, baseline 측정 기준이다. 이 질문들은 STEP 1 이후 evidence가 필요한 시점에 다룬다. STEP 1의 설계나 ETL 기능 구현은 시작하지 않았다.
+
+## 2026-10-01 — STEP 1: Synthetic ETL Target Design
+
+### 당시 판단: 구현 전에 target을 설계하는 이유
+
+baseline 코드를 먼저 만들면 익숙한 구현 방식이나 예상한 최적화에 맞춰 문제를 구성할 수 있다. 이번 STEP에서는 관찰할 문제의 경계와 명시적으로 모르는 것을 먼저 기록해, 이후 코드와 실험이 처음부터 정답을 심은 demo가 되지 않도록 한다.
+
+실제 회사 시스템에서 가져오는 것은 회사명, 업무 용어, schema나 코드가 아니라 Input → Parse → Validate → Reference Lookup → Business Processing → Persistence → Result라는 일반적인 문제 구조뿐이다. 이렇게 추상화해야 공개 저장소의 기밀성을 지키면서도 진단 과정을 재현할 수 있다.
+
+### 당시 판단: 선택한 domain과 대안
+
+Synthetic Warehouse / Shipment Import를 선택했다. 배송 CSV의 각 품목을 parse하고 supplier, warehouse와 product를 확인한 뒤 금액을 계산해 저장하는 흐름은 ETL 단계를 자연스럽게 표현하고 일반인이 이해하기 쉽다. 주소, 고객, 결제와 재고 같은 불필요한 업무 모델은 제외했다.
+
+주문 가져오기도 고려했지만 할인, 결제와 고객 정책으로 범위가 커질 가능성이 높았다. 단순 이벤트 가져오기는 더 작지만 reference lookup과 관계형 persistence를 자연스럽게 설명하기 어려웠다. 배송 품목 모델이 필요한 구조와 단순성 사이에서 더 적절하다고 판단했다.
+
+### 현재 명시적으로 모르는 것
+
+아직 어떤 단계가 처리시간을 지배하는지 모른다. reference lookup이나 persistence가 병목이라는 증거가 없고, CPU, parsing, memory와 database 중 무엇이 데이터 증가에 따라 먼저 지배적이 될지도 모른다. cache와 batch가 유효한 실험인지조차 이후 evidence로 판단해야 한다. 성능 목표나 예상 개선 배율도 정하지 않았다.
+
+STEP 1 시작 전 최종 환경 확인에서는 재로그인된 Windows 토큰에 `ORA_DBA`가 반영되었고, SQL*Plus 관리자 OS 인증으로 Oracle AI Database 26ai Free 23.26.0.0.0 인스턴스가 `OPEN`/`ACTIVE` 상태임을 read-only 조회로 확인했다. password는 사용하거나 기록하지 않았다. 이는 앞선 STEP 0 기록 이후 확인된 사실이며 기존 Entry는 당시 기록으로 유지한다.
+
+### 다음 STEP으로 넘기는 질문
+
+- CSV의 정확한 문법, 날짜 형식과 숫자 정밀도를 어디까지 고정할 것인가?
+- shipment 단위의 입력 일관성과 오류를 baseline에서 어떻게 표현할 것인가?
+- 자연스러운 최소 transaction 경계와 persistence 호출 방식은 무엇인가?
+- application schema와 최소 권한, credential 주입을 어떻게 구성할 것인가?
+- STEP 3에서 어떤 dataset 크기와 값 분포를 재현 가능하게 만들 것인가?
+
+이 질문은 STEP 2 이후 각 범위에서 결정한다. 이번 STEP에서는 ETL 코드, schema, table, dataset과 성능 계측을 만들지 않는다.

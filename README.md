@@ -3,7 +3,7 @@
 
 이 저장소는 **진행 중인 Case #01 연구**다. 실제 엔터프라이즈 ETL/Batch 성능 문제를 경험하면서 시작된 질문과 문제 해결 과정을 작업증명(Proof of Work)으로 남기려 한다.
 
-**STEP 0 — Project Foundation**까지 완료했으며 STEP 1은 아직 시작하지 않았다. 재현 가능한 최소 Spring Boot 기반과 Oracle 실험환경을 구성하고 실제 Build/Test/Run을 확인했다. ETL 기능, 측정, 실험 또는 성능 개선 검증은 아직 수행하지 않았다.
+**STEP 1 — Synthetic ETL Target Design**을 진행하고 있다. 재현 가능한 최소 Spring Boot 기반과 Oracle 실험환경 위에서 공개 가능한 ETL 문제 구조를 설계했으며, ETL 기능, 측정, 실험 또는 성능 개선 검증은 아직 수행하지 않았다.
 
 ## 시작 기록
 
@@ -13,6 +13,7 @@
 - [Human + AI 협업 원칙](docs/origin/human-ai-collaboration.md)
 - [CASE #01 전체 Roadmap](docs/roadmap.md)
 - [Project Foundation](docs/foundation/project-foundation.md)
+- [Synthetic ETL Target Design](docs/design/synthetic-etl-target.md)
 - [Research Journal](JOURNAL.md)
 
 ## 앞으로의 방향

@@ -37,9 +37,9 @@ UNKNOWN PERFORMANCE PROBLEM
 ```text
 STEP -1  Origin                       [COMPLETE]
    ↓
-STEP  0  Project Foundation           [COMPLETE]  ← LATEST COMPLETE
+STEP  0  Project Foundation           [COMPLETE]
    ↓
-STEP  1  Synthetic ETL Target Design  [NOT STARTED]
+STEP  1  Synthetic ETL Target Design  [IN PROGRESS]  ← CURRENT
    ↓
   ...
    ↓
@@ -62,7 +62,7 @@ STEP 16  Public Proof of Work         [NOT STARTED]
 - **하지 않는 일:** ETL target을 설계하거나 baseline 코드와 dataset을 미리 구현하지 않는다.
 - **연결:** 이후 설계와 실험이 같은 조건에서 재현될 수 있도록 STEP 1의 토대를 만든다.
 
-### STEP 1 — Synthetic ETL Target Design `[NOT STARTED]`
+### STEP 1 — Synthetic ETL Target Design `[IN PROGRESS]`
 
 - **하는 일:** 공개 가능한 synthetic 환경에서 어떤 ETL 문제 구조를 재현할지 설계한다.
 - **하지 않는 일:** 병목 원인이나 최적화 효과를 미리 결론 내리지 않는다.
@@ -160,7 +160,7 @@ STEP 16  Public Proof of Work         [NOT STARTED]
 
 ## 계획 변경 원칙
 
-STEP 이름과 순서는 현재의 연구 계획이다. 실제 병목 원인, 성능 개선 배율, cache와 batch의 효과, Oracle 측 원인, transaction 문제의 발생 여부를 미리 확정하지 않는다. 앞선 evidence가 계획된 실험을 지지하지 않으면 해당 STEP을 수정하거나 다른 검증으로 교체할 수 있다.
+STEP 이름과 순서는 현재의 연구 계획이며 각본이 아니다. 실제 병목 원인, 성능 개선 배율, cache와 batch의 효과, Oracle 측 원인, transaction 문제의 발생 여부를 미리 확정하지 않는다. STEP 9의 cache와 STEP 10의 batch도 현재의 experiment candidate일 뿐이다. STEP 4~8의 evidence가 계획된 실험을 지지하지 않으면 해당 STEP을 수정하거나 다른 검증으로 교체한다.
 
 ```text
 Plan → Evidence → Plan Revision
@@ -174,6 +174,7 @@ Roadmap 변경도 Proof of Work의 일부다. 중요한 구조 변경이 생기�
 - `docs/roadmap.md`: 전체 연구에서 지금 어디에 있는지 보여주는 지도
 - [JOURNAL.md](../JOURNAL.md): 실제 생각과 판단의 변화를 기록하는 시간순 연구노트
 - [`docs/origin/`](origin/): 이 연구를 시작한 이유
-- `docs/foundation/`: 어떤 환경과 원칙 위에서 연구하는지 기록할 예정인 영역
+- [`docs/foundation/`](foundation/): 어떤 환경과 원칙 위에서 연구하는지 기록하는 영역
+- [`docs/design/`](design/): 현재 STEP에서 확정한 설계 결정과 명시적인 미결 사항
 
 아직 시작하지 않은 실험과 진단을 위한 폴더는 미리 만들지 않는다. 실제 STEP이 시작될 때 필요한 문서 구조를 결정한다.
