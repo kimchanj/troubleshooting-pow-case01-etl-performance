@@ -1,0 +1,1869 @@
+{
+  "metadata": {
+    "schemaVersion": "0.1",
+    "project": "case-01-etl-performance",
+    "generator": "tools/source-mapper/analyze.py",
+    "scope": "app/src/main/java and app/db/schema.sql"
+  },
+  "nodes": [
+    {
+      "id": "db_object:PRODUCT",
+      "type": "DB_OBJECT",
+      "label": "PRODUCT",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 9
+      },
+      "details": {
+        "objectKind": "TABLE"
+      }
+    },
+    {
+      "id": "db_object:PRODUCT_SEQ",
+      "type": "DB_OBJECT",
+      "label": "PRODUCT_SEQ",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 3
+      },
+      "details": {
+        "objectKind": "SEQUENCE"
+      }
+    },
+    {
+      "id": "db_object:SHIPMENT",
+      "type": "DB_OBJECT",
+      "label": "SHIPMENT",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 36
+      },
+      "details": {
+        "objectKind": "TABLE"
+      }
+    },
+    {
+      "id": "db_object:SHIPMENT_ITEM",
+      "type": "DB_OBJECT",
+      "label": "SHIPMENT_ITEM",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 49
+      },
+      "details": {
+        "objectKind": "TABLE"
+      }
+    },
+    {
+      "id": "db_object:SHIPMENT_ITEM_SEQ",
+      "type": "DB_OBJECT",
+      "label": "SHIPMENT_ITEM_SEQ",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 7
+      },
+      "details": {
+        "objectKind": "SEQUENCE"
+      }
+    },
+    {
+      "id": "db_object:SHIPMENT_SEQ",
+      "type": "DB_OBJECT",
+      "label": "SHIPMENT_SEQ",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 6
+      },
+      "details": {
+        "objectKind": "SEQUENCE"
+      }
+    },
+    {
+      "id": "db_object:SUPPLIER",
+      "type": "DB_OBJECT",
+      "label": "SUPPLIER",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 18
+      },
+      "details": {
+        "objectKind": "TABLE"
+      }
+    },
+    {
+      "id": "db_object:SUPPLIER_SEQ",
+      "type": "DB_OBJECT",
+      "label": "SUPPLIER_SEQ",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 4
+      },
+      "details": {
+        "objectKind": "SEQUENCE"
+      }
+    },
+    {
+      "id": "db_object:WAREHOUSE",
+      "type": "DB_OBJECT",
+      "label": "WAREHOUSE",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 27
+      },
+      "details": {
+        "objectKind": "TABLE"
+      }
+    },
+    {
+      "id": "db_object:WAREHOUSE_SEQ",
+      "type": "DB_OBJECT",
+      "label": "WAREHOUSE_SEQ",
+      "source": {
+        "path": "app/db/schema.sql",
+        "line": 5
+      },
+      "details": {
+        "objectKind": "SEQUENCE"
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.EtlPerformanceApplication#main(String)",
+      "type": "METHOD",
+      "label": "main()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/EtlPerformanceApplication.java",
+        "line": 9
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.EtlPerformanceApplication",
+        "returnType": "void",
+        "parameters": [
+          {
+            "type": "String",
+            "name": "args"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#BaselineEtlRunner(ShipmentImporter,String)",
+      "type": "METHOD",
+      "label": "BaselineEtlRunner()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/BaselineEtlRunner.java",
+        "line": 17
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.BaselineEtlRunner",
+        "returnType": null,
+        "parameters": [
+          {
+            "type": "ShipmentImporter",
+            "name": "importer"
+          },
+          {
+            "type": "String",
+            "name": "inputFile"
+          }
+        ],
+        "annotations": [],
+        "constructor": true
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#run(ApplicationArguments)",
+      "type": "METHOD",
+      "label": "run()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/BaselineEtlRunner.java",
+        "line": 23
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.BaselineEtlRunner",
+        "returnType": "void",
+        "parameters": [
+          {
+            "type": "ApplicationArguments",
+            "name": "args"
+          }
+        ],
+        "annotations": [
+          "Override"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.CsvShipmentRow#lineAmount()",
+      "type": "METHOD",
+      "label": "lineAmount()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/CsvShipmentRow.java",
+        "line": 16
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.CsvShipmentRow",
+        "returnType": "BigDecimal",
+        "parameters": [],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.EtlValidationException#EtlValidationException(String)",
+      "type": "METHOD",
+      "label": "EtlValidationException()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/EtlValidationException.java",
+        "line": 4
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.EtlValidationException",
+        "returnType": null,
+        "parameters": [
+          {
+            "type": "String",
+            "name": "message"
+          }
+        ],
+        "annotations": [],
+        "constructor": true
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.EtlValidationException#EtlValidationException(String,Throwable)",
+      "type": "METHOD",
+      "label": "EtlValidationException()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/EtlValidationException.java",
+        "line": 8
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.EtlValidationException",
+        "returnType": null,
+        "parameters": [
+          {
+            "type": "String",
+            "name": "message"
+          },
+          {
+            "type": "Throwable",
+            "name": "cause"
+          }
+        ],
+        "annotations": [],
+        "constructor": true
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#error(int,String)",
+      "type": "METHOD",
+      "label": "error()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+        "line": 102
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+        "returnType": "EtlValidationException",
+        "parameters": [
+          {
+            "type": "int",
+            "name": "line"
+          },
+          {
+            "type": "String",
+            "name": "message"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#error(int,String,Throwable)",
+      "type": "METHOD",
+      "label": "error()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+        "line": 106
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+        "returnType": "EtlValidationException",
+        "parameters": [
+          {
+            "type": "int",
+            "name": "line"
+          },
+          {
+            "type": "String",
+            "name": "message"
+          },
+          {
+            "type": "Throwable",
+            "name": "cause"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#parseColumns(String)",
+      "type": "METHOD",
+      "label": "parseColumns()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+        "line": 71
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+        "returnType": "List",
+        "parameters": [
+          {
+            "type": "String",
+            "name": "line"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#read(Path)",
+      "type": "METHOD",
+      "label": "read()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+        "line": 21
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+        "returnType": "List",
+        "parameters": [
+          {
+            "type": "Path",
+            "name": "path"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#stripBom(String)",
+      "type": "METHOD",
+      "label": "stripBom()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+        "line": 98
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+        "returnType": "String",
+        "parameters": [
+          {
+            "type": "String",
+            "name": "value"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#toRow(List,int)",
+      "type": "METHOD",
+      "label": "toRow()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+        "line": 46
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+        "returnType": "CsvShipmentRow",
+        "parameters": [
+          {
+            "type": "List",
+            "name": "values"
+          },
+          {
+            "type": "int",
+            "name": "lineNumber"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#ShipmentImporter(ShipmentCsvReader,ShipmentTransactionService)",
+      "type": "METHOD",
+      "label": "ShipmentImporter()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+        "line": 14
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+        "returnType": null,
+        "parameters": [
+          {
+            "type": "ShipmentCsvReader",
+            "name": "csvReader"
+          },
+          {
+            "type": "ShipmentTransactionService",
+            "name": "transactionService"
+          }
+        ],
+        "annotations": [],
+        "constructor": true
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)",
+      "type": "METHOD",
+      "label": "importFile()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+        "line": 19
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+        "returnType": "ImportResult",
+        "parameters": [
+          {
+            "type": "Path",
+            "name": "path"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#ShipmentTransactionService(EtlMapper)",
+      "type": "METHOD",
+      "label": "ShipmentTransactionService()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+        "line": 16
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+        "returnType": null,
+        "parameters": [
+          {
+            "type": "EtlMapper",
+            "name": "mapper"
+          }
+        ],
+        "annotations": [],
+        "constructor": true
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "type": "METHOD",
+      "label": "importShipment()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+        "line": 21
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+        "returnType": "int",
+        "parameters": [
+          {
+            "type": "List",
+            "name": "rows"
+          }
+        ],
+        "annotations": [
+          "Transactional"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#requireActive(ReferenceData,String,String)",
+      "type": "METHOD",
+      "label": "requireActive()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+        "line": 51
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+        "returnType": "ReferenceData",
+        "parameters": [
+          {
+            "type": "ReferenceData",
+            "name": "value"
+          },
+          {
+            "type": "String",
+            "name": "type"
+          },
+          {
+            "type": "String",
+            "name": "code"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#validateConsistentHeader(List,CsvShipmentRow)",
+      "type": "METHOD",
+      "label": "validateConsistentHeader()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+        "line": 41
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+        "returnType": "void",
+        "parameters": [
+          {
+            "type": "List",
+            "name": "rows"
+          },
+          {
+            "type": "CsvShipmentRow",
+            "name": "first"
+          }
+        ],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment(String)",
+      "type": "METHOD",
+      "label": "countShipment()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 21
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.EtlMapper",
+        "returnType": "int",
+        "parameters": [
+          {
+            "type": "String",
+            "name": "externalId"
+          }
+        ],
+        "annotations": [
+          "Select"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct(String)",
+      "type": "METHOD",
+      "label": "findProduct()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 12
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.EtlMapper",
+        "returnType": "ReferenceData",
+        "parameters": [
+          {
+            "type": "String",
+            "name": "code"
+          }
+        ],
+        "annotations": [
+          "Select"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier(String)",
+      "type": "METHOD",
+      "label": "findSupplier()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 15
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.EtlMapper",
+        "returnType": "ReferenceData",
+        "parameters": [
+          {
+            "type": "String",
+            "name": "code"
+          }
+        ],
+        "annotations": [
+          "Select"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse(String)",
+      "type": "METHOD",
+      "label": "findWarehouse()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 18
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.EtlMapper",
+        "returnType": "ReferenceData",
+        "parameters": [
+          {
+            "type": "String",
+            "name": "code"
+          }
+        ],
+        "annotations": [
+          "Select"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)",
+      "type": "METHOD",
+      "label": "insertShipment()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 26
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.EtlMapper",
+        "returnType": "void",
+        "parameters": [
+          {
+            "type": "ShipmentRecord",
+            "name": "shipment"
+          }
+        ],
+        "annotations": [
+          "SelectKey",
+          "Insert"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)",
+      "type": "METHOD",
+      "label": "insertShipmentItem()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 31
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.EtlMapper",
+        "returnType": "void",
+        "parameters": [
+          {
+            "type": "ShipmentItemRecord",
+            "name": "item"
+          }
+        ],
+        "annotations": [
+          "SelectKey",
+          "Insert"
+        ],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.ReferenceData#active()",
+      "type": "METHOD",
+      "label": "active()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ReferenceData.java",
+        "line": 4
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.ReferenceData",
+        "returnType": "boolean",
+        "parameters": [],
+        "annotations": [],
+        "constructor": false
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.ShipmentItemRecord#ShipmentItemRecord(long,long,int,BigDecimal,BigDecimal)",
+      "type": "METHOD",
+      "label": "ShipmentItemRecord()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ShipmentItemRecord.java",
+        "line": 13
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.ShipmentItemRecord",
+        "returnType": null,
+        "parameters": [
+          {
+            "type": "long",
+            "name": "shipmentId"
+          },
+          {
+            "type": "long",
+            "name": "productId"
+          },
+          {
+            "type": "int",
+            "name": "quantity"
+          },
+          {
+            "type": "BigDecimal",
+            "name": "unitPrice"
+          },
+          {
+            "type": "BigDecimal",
+            "name": "lineAmount"
+          }
+        ],
+        "annotations": [],
+        "constructor": true
+      }
+    },
+    {
+      "id": "method:io.github.kimchanj.etlperformance.persistence.ShipmentRecord#ShipmentRecord(String,LocalDateTime,long,long)",
+      "type": "METHOD",
+      "label": "ShipmentRecord()",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ShipmentRecord.java",
+        "line": 12
+      },
+      "details": {
+        "owner": "io.github.kimchanj.etlperformance.persistence.ShipmentRecord",
+        "returnType": null,
+        "parameters": [
+          {
+            "type": "String",
+            "name": "externalId"
+          },
+          {
+            "type": "LocalDateTime",
+            "name": "shippedAt"
+          },
+          {
+            "type": "long",
+            "name": "supplierId"
+          },
+          {
+            "type": "long",
+            "name": "warehouseId"
+          }
+        ],
+        "annotations": [],
+        "constructor": true
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment#Select",
+      "type": "SQL",
+      "label": "Select countShipment",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 20
+      },
+      "details": {
+        "annotation": "Select",
+        "statement": "SELECT COUNT(*) FROM shipment WHERE external_id = #{externalId}"
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct#Select",
+      "type": "SQL",
+      "label": "Select findProduct",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 11
+      },
+      "details": {
+        "annotation": "Select",
+        "statement": "SELECT product_id AS id, product_code AS code, active_flag FROM product WHERE product_code = #{code}"
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier#Select",
+      "type": "SQL",
+      "label": "Select findSupplier",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 14
+      },
+      "details": {
+        "annotation": "Select",
+        "statement": "SELECT supplier_id AS id, supplier_code AS code, active_flag FROM supplier WHERE supplier_code = #{code}"
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse#Select",
+      "type": "SQL",
+      "label": "Select findWarehouse",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 17
+      },
+      "details": {
+        "annotation": "Select",
+        "statement": "SELECT warehouse_id AS id, warehouse_code AS code, active_flag FROM warehouse WHERE warehouse_code = #{code}"
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#Insert",
+      "type": "SQL",
+      "label": "Insert insertShipment",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 24
+      },
+      "details": {
+        "annotation": "Insert",
+        "statement": "INSERT INTO shipment (shipment_id, external_id, shipped_at, supplier_id, warehouse_id, status) VALUES (#{id}, #{externalId}, #{shippedAt}, #{supplierId}, #{warehouseId}, 'IMPORTED')"
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#SelectKey",
+      "type": "SQL",
+      "label": "SelectKey insertShipment",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 23
+      },
+      "details": {
+        "annotation": "SelectKey",
+        "statement": "SELECT shipment_seq.NEXTVAL FROM dual"
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#Insert",
+      "type": "SQL",
+      "label": "Insert insertShipmentItem",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 29
+      },
+      "details": {
+        "annotation": "Insert",
+        "statement": "INSERT INTO shipment_item (shipment_item_id, shipment_id, product_id, quantity, unit_price, line_amount) VALUES (#{id}, #{shipmentId}, #{productId}, #{quantity}, #{unitPrice}, #{lineAmount})"
+      }
+    },
+    {
+      "id": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#SelectKey",
+      "type": "SQL",
+      "label": "SelectKey insertShipmentItem",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 28
+      },
+      "details": {
+        "annotation": "SelectKey",
+        "statement": "SELECT shipment_item_seq.NEXTVAL FROM dual"
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.EtlPerformanceApplication",
+      "type": "TYPE",
+      "label": "EtlPerformanceApplication",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/EtlPerformanceApplication.java",
+        "line": 7
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance",
+        "javaKind": "class",
+        "annotations": [
+          "SpringBootApplication"
+        ],
+        "implementedInterfaces": [],
+        "componentCandidate": true
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner",
+      "type": "TYPE",
+      "label": "BaselineEtlRunner",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/BaselineEtlRunner.java",
+        "line": 13
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.etl",
+        "javaKind": "class",
+        "annotations": [
+          "Component",
+          "ConditionalOnProperty"
+        ],
+        "implementedInterfaces": [
+          "ApplicationRunner"
+        ],
+        "componentCandidate": true
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.etl.CsvShipmentRow",
+      "type": "TYPE",
+      "label": "CsvShipmentRow",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/CsvShipmentRow.java",
+        "line": 6
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.etl",
+        "javaKind": "record",
+        "annotations": [],
+        "implementedInterfaces": [],
+        "componentCandidate": false
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.etl.EtlValidationException",
+      "type": "TYPE",
+      "label": "EtlValidationException",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/EtlValidationException.java",
+        "line": 3
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.etl",
+        "javaKind": "class",
+        "annotations": [],
+        "implementedInterfaces": [],
+        "componentCandidate": false
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "type": "TYPE",
+      "label": "ShipmentCsvReader",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+        "line": 16
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.etl",
+        "javaKind": "class",
+        "annotations": [
+          "Component"
+        ],
+        "implementedInterfaces": [],
+        "componentCandidate": true
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+      "type": "TYPE",
+      "label": "ShipmentImporter",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+        "line": 10
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.etl",
+        "javaKind": "class",
+        "annotations": [
+          "Service"
+        ],
+        "implementedInterfaces": [],
+        "componentCandidate": true
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "type": "TYPE",
+      "label": "ShipmentTransactionService",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+        "line": 13
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.etl",
+        "javaKind": "class",
+        "annotations": [
+          "Service"
+        ],
+        "implementedInterfaces": [],
+        "componentCandidate": true
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "type": "TYPE",
+      "label": "EtlMapper",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+        "line": 10
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.persistence",
+        "javaKind": "interface",
+        "annotations": [
+          "Mapper"
+        ],
+        "implementedInterfaces": [],
+        "componentCandidate": true
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.persistence.ReferenceData",
+      "type": "TYPE",
+      "label": "ReferenceData",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ReferenceData.java",
+        "line": 3
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.persistence",
+        "javaKind": "record",
+        "annotations": [],
+        "implementedInterfaces": [],
+        "componentCandidate": false
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.persistence.ShipmentItemRecord",
+      "type": "TYPE",
+      "label": "ShipmentItemRecord",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ShipmentItemRecord.java",
+        "line": 5
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.persistence",
+        "javaKind": "class",
+        "annotations": [],
+        "implementedInterfaces": [],
+        "componentCandidate": false
+      }
+    },
+    {
+      "id": "type:io.github.kimchanj.etlperformance.persistence.ShipmentRecord",
+      "type": "TYPE",
+      "label": "ShipmentRecord",
+      "source": {
+        "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ShipmentRecord.java",
+        "line": 5
+      },
+      "details": {
+        "package": "io.github.kimchanj.etlperformance.persistence",
+        "javaKind": "class",
+        "annotations": [],
+        "implementedInterfaces": [],
+        "componentCandidate": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#run(ApplicationArguments)#method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)#27",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#run(ApplicationArguments)",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'importer' declared as ShipmentImporter",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/BaselineEtlRunner.java",
+          "line": 27
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)#method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#read(Path)#21",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#read(Path)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'csvReader' declared as ShipmentCsvReader",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+          "line": 21
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#26",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'transactionService' declared as ShipmentTransactionService",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+          "line": 26
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment(String)#24",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'mapper' declared as EtlMapper",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 24
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct(String)#34",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'mapper' declared as EtlMapper",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 34
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier(String)#28",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'mapper' declared as EtlMapper",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 28
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse(String)#29",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'mapper' declared as EtlMapper",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 29
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)#31",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'mapper' declared as EtlMapper",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 31
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)#35",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'mapper' declared as EtlMapper",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 35
+        }
+      }
+    },
+    {
+      "id": "edge:CALL#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#requireActive(ReferenceData,String,String)#method:io.github.kimchanj.etlperformance.persistence.ReferenceData#active()#55",
+      "type": "CALL",
+      "from": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#requireActive(ReferenceData,String,String)",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.ReferenceData#active()",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Explicit call through receiver 'value' declared as ReferenceData",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 55
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.EtlPerformanceApplication#method:io.github.kimchanj.etlperformance.EtlPerformanceApplication#main(String)#9",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.EtlPerformanceApplication",
+      "to": "method:io.github.kimchanj.etlperformance.EtlPerformanceApplication#main(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/EtlPerformanceApplication.java",
+          "line": 9
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#BaselineEtlRunner(ShipmentImporter,String)#17",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner",
+      "to": "method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#BaselineEtlRunner(ShipmentImporter,String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/BaselineEtlRunner.java",
+          "line": 17
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#run(ApplicationArguments)#23",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner",
+      "to": "method:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#run(ApplicationArguments)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/BaselineEtlRunner.java",
+          "line": 23
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.CsvShipmentRow#method:io.github.kimchanj.etlperformance.etl.CsvShipmentRow#lineAmount()#16",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.CsvShipmentRow",
+      "to": "method:io.github.kimchanj.etlperformance.etl.CsvShipmentRow#lineAmount()",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/CsvShipmentRow.java",
+          "line": 16
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.EtlValidationException#method:io.github.kimchanj.etlperformance.etl.EtlValidationException#EtlValidationException(String)#4",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.EtlValidationException",
+      "to": "method:io.github.kimchanj.etlperformance.etl.EtlValidationException#EtlValidationException(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/EtlValidationException.java",
+          "line": 4
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.EtlValidationException#method:io.github.kimchanj.etlperformance.etl.EtlValidationException#EtlValidationException(String,Throwable)#8",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.EtlValidationException",
+      "to": "method:io.github.kimchanj.etlperformance.etl.EtlValidationException#EtlValidationException(String,Throwable)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/EtlValidationException.java",
+          "line": 8
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#error(int,String)#102",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#error(int,String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+          "line": 102
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#error(int,String,Throwable)#106",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#error(int,String,Throwable)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+          "line": 106
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#parseColumns(String)#71",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#parseColumns(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+          "line": 71
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#read(Path)#21",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#read(Path)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+          "line": 21
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#stripBom(String)#98",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#stripBom(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+          "line": 98
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#toRow(List,int)#46",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#toRow(List,int)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentCsvReader.java",
+          "line": 46
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentImporter#method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#ShipmentImporter(ShipmentCsvReader,ShipmentTransactionService)#14",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#ShipmentImporter(ShipmentCsvReader,ShipmentTransactionService)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+          "line": 14
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentImporter#method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)#19",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentImporter#importFile(Path)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+          "line": 19
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#ShipmentTransactionService(EtlMapper)#16",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#ShipmentTransactionService(EtlMapper)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 16
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)#21",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#importShipment(List)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 21
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#requireActive(ReferenceData,String,String)#51",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#requireActive(ReferenceData,String,String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 51
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#validateConsistentHeader(List,CsvShipmentRow)#41",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "to": "method:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#validateConsistentHeader(List,CsvShipmentRow)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 41
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.EtlMapper#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment(String)#21",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 21
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.EtlMapper#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct(String)#12",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 12
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.EtlMapper#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier(String)#15",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 15
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.EtlMapper#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse(String)#18",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse(String)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 18
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.EtlMapper#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)#26",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 26
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.EtlMapper#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)#31",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 31
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.ReferenceData#method:io.github.kimchanj.etlperformance.persistence.ReferenceData#active()#4",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.ReferenceData",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.ReferenceData#active()",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ReferenceData.java",
+          "line": 4
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.ShipmentItemRecord#method:io.github.kimchanj.etlperformance.persistence.ShipmentItemRecord#ShipmentItemRecord(long,long,int,BigDecimal,BigDecimal)#13",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.ShipmentItemRecord",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.ShipmentItemRecord#ShipmentItemRecord(long,long,int,BigDecimal,BigDecimal)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ShipmentItemRecord.java",
+          "line": 13
+        }
+      }
+    },
+    {
+      "id": "edge:CONTAINS#type:io.github.kimchanj.etlperformance.persistence.ShipmentRecord#method:io.github.kimchanj.etlperformance.persistence.ShipmentRecord#ShipmentRecord(String,LocalDateTime,long,long)#12",
+      "type": "CONTAINS",
+      "from": "type:io.github.kimchanj.etlperformance.persistence.ShipmentRecord",
+      "to": "method:io.github.kimchanj.etlperformance.persistence.ShipmentRecord#ShipmentRecord(String,LocalDateTime,long,long)",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Type declares method",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/ShipmentRecord.java",
+          "line": 12
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment#Select#db_object:SHIPMENT#20",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment#Select",
+      "to": "db_object:SHIPMENT",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 20
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct#Select#db_object:PRODUCT#11",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct#Select",
+      "to": "db_object:PRODUCT",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 11
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier#Select#db_object:SUPPLIER#14",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier#Select",
+      "to": "db_object:SUPPLIER",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 14
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse#Select#db_object:WAREHOUSE#17",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse#Select",
+      "to": "db_object:WAREHOUSE",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 17
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#Insert#db_object:SHIPMENT#24",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#Insert",
+      "to": "db_object:SHIPMENT",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 24
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#SelectKey#db_object:SHIPMENT_SEQ#23",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#SelectKey",
+      "to": "db_object:SHIPMENT_SEQ",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 23
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#Insert#db_object:SHIPMENT_ITEM#29",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#Insert",
+      "to": "db_object:SHIPMENT_ITEM",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 29
+        }
+      }
+    },
+    {
+      "id": "edge:DB_ACCESS#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#SelectKey#db_object:SHIPMENT_ITEM_SEQ#28",
+      "type": "DB_ACCESS",
+      "from": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#SelectKey",
+      "to": "db_object:SHIPMENT_ITEM_SEQ",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "SQL directly references database object",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 28
+        }
+      }
+    },
+    {
+      "id": "edge:DEPENDENCY#type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner#type:io.github.kimchanj.etlperformance.etl.ShipmentImporter#17",
+      "type": "DEPENDENCY",
+      "from": "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner",
+      "to": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Source-declared constructor dependency",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/BaselineEtlRunner.java",
+          "line": 17
+        }
+      }
+    },
+    {
+      "id": "edge:DEPENDENCY#type:io.github.kimchanj.etlperformance.etl.ShipmentImporter#type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader#14",
+      "type": "DEPENDENCY",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+      "to": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Source-declared constructor dependency",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+          "line": 14
+        }
+      }
+    },
+    {
+      "id": "edge:DEPENDENCY#type:io.github.kimchanj.etlperformance.etl.ShipmentImporter#type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#14",
+      "type": "DEPENDENCY",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+      "to": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Source-declared constructor dependency",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentImporter.java",
+          "line": 14
+        }
+      }
+    },
+    {
+      "id": "edge:DEPENDENCY#type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService#type:io.github.kimchanj.etlperformance.persistence.EtlMapper#16",
+      "type": "DEPENDENCY",
+      "from": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "to": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Source-declared constructor dependency",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/etl/ShipmentTransactionService.java",
+          "line": 16
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment(String)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment#Select#20",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment(String)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#countShipment#Select",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 20
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct(String)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct#Select#11",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct(String)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findProduct#Select",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 11
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier(String)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier#Select#14",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier(String)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findSupplier#Select",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 14
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse(String)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse#Select#17",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse(String)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#findWarehouse#Select",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 17
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#Insert#24",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#Insert",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 24
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#SelectKey#23",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment(ShipmentRecord)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipment#SelectKey",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 23
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#Insert#29",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#Insert",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 29
+        }
+      }
+    },
+    {
+      "id": "edge:MAPS_TO#method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)#sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#SelectKey#28",
+      "type": "MAPS_TO",
+      "from": "method:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem(ShipmentItemRecord)",
+      "to": "sql:io.github.kimchanj.etlperformance.persistence.EtlMapper#insertShipmentItem#SelectKey",
+      "evidence": {
+        "level": "STATIC",
+        "basis": "Mapper annotation declares SQL",
+        "source": {
+          "path": "app/src/main/java/io/github/kimchanj/etlperformance/persistence/EtlMapper.java",
+          "line": 28
+        }
+      }
+    }
+  ],
+  "verifications": []
+}

@@ -148,7 +148,7 @@ Minimal `system-map.json` draft:
   },
   "nodes": [
     {
-      "id": "method:ShipmentTransactionService#importShipment",
+      "id": "method:ShipmentTransactionService#importShipment(List)",
       "type": "METHOD",
       "label": "importShipment()",
       "role": "Persists one shipment and its items in one transaction",
@@ -181,7 +181,7 @@ Minimal `system-map.json` draft:
     {
       "id": "edge:importShipment-insertShipment",
       "type": "CALL",
-      "from": "method:ShipmentTransactionService#importShipment",
+      "from": "method:ShipmentTransactionService#importShipment(List)",
       "to": "method:EtlMapper#insertShipment",
       "evidence": {
         "level": "STATIC",
@@ -194,6 +194,8 @@ Minimal `system-map.json` draft:
 ```
 
 The draft is an information contract, not a committed JSON artifact or final schema.
+
+Implementation showed that method name alone is not a stable identity because the current source contains overloaded `error()` methods. Generated method IDs therefore include normalized parameter types, for example `importShipment(List)`.
 
 ## 15. Analyzer Feasibility
 

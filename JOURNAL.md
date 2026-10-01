@@ -274,3 +274,15 @@ Initial Roadmap에는 STEP 2와 STEP 3 사이의 별도 단계가 없었다. STE
 구현부터 시작하지 않고 Purpose & Boundary, Information Model, Visual/UI Design을 먼저 작성했다. Java source, mapper annotation SQL, configuration, Oracle DDL과 tests에서 직접 얻을 수 있는 관계를 `STATIC`, framework semantics로 추론한 관계를 `INFERRED`, 향후 debugger로 확인할 관계를 `VERIFIED`로 구분했다. 이 구분은 AI나 analyzer의 추론을 실행 사실처럼 보이지 않게 하기 위한 것이다.
 
 Analyzer와 HTML Viewer는 아직 만들지 않았다. 다음 판단은 최소 map이 실제 code comprehension에 유용한지, 어떤 자동 추출이 신뢰할 수 있는지, human verification evidence를 어떻게 기록할지에 대한 후속 설계와 검증에 달려 있다. STEP 3은 시작하지 않았다.
+
+## 2026-10-02 — STEP 2.5-D: Minimal Source Analyzer
+
+Python 표준 라이브러리만으로 CASE #01 Java source와 schema SQL을 읽어 deterministic `system-map.json`을 생성했다. ETL Maven/runtime dependency와 source는 변경하지 않았다. Type, method, selected annotation, constructor dependency, declared field receiver를 통한 explicit call, MyBatis annotation SQL과 직접 참조된 DB object는 설계대로 비교적 쉽게 추출할 수 있었다.
+
+첫 ground truth test에서는 interface method가 access modifier를 생략하고 parameter annotation을 포함하기 때문에 mapper method를 놓쳤다. Interface syntax만 허용하도록 parser를 수정했다. 이후 generated map을 확인하면서 method name만 stable ID로 사용하면 `ShipmentCsvReader.error()` overload가 합쳐지는 문제도 발견해 parameter type signature를 ID에 포함했다. 이는 구현 전 IR 초안에서 빠졌던 실제 설계 수정이다.
+
+Receiver type을 field나 parameter 선언에서 확실히 찾을 수 있는 call만 연결했다. 같은 method name이 보인다는 이유만으로 target을 추측하지 않았다. Spring의 component scan과 `ApplicationRunner` 호출, transaction proxy, commit/rollback, MyBatis proxy와 JDBC runtime frame은 정적 사실로 만들지 않았다. Analyzer가 생성한 57개 edge는 모두 `STATIC`이며 `VERIFIED`는 생성하지 않았다.
+
+두 번 생성한 JSON의 SHA-256이 같았고 5개 analyzer test가 통과했다. 현재 artifact는 Type 11, Method 27, SQL 8, DB Object 10의 56 nodes와 57 edges를 포함한다. 이 숫자는 현재 source snapshot의 결과이지 analyzer의 일반적 완전성을 뜻하지 않는다.
+
+HTML Viewer와 performance overlay는 시작하지 않았다. STEP 2.5-E 전에 사람이 결정할 것은 first viewer에서 어떤 node/edge를 기본 표시할지, `COMPONENT` semantic layer를 generated facts와 어떻게 결합할지, inferred framework edge를 별도 curated data로 둘지다.
