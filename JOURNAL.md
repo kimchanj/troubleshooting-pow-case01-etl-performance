@@ -321,3 +321,11 @@ v0.2는 별도 `viewer-v0.2/`에 SVG node-link renderer를 만들었다. System 
 현재의 작은 계층형 graph에는 외부 dependency 없이 결정적 longest-path rank와 균등 spacing을 적용했다. 더 큰 graph나 cycle에서 crossing과 layout 품질이 무너지면 Dagre/ELK 같은 layout engine을 검토한다. 현재 schema도 범용 IR로 rewrite하지 않고 domain, hierarchy, provenance와 representation hint의 gap만 문서화했다.
 
 Browser의 기술적·시각적 smoke test는 구현 검증일 뿐 comprehension 가설의 성공 판정이 아니다. 다음 판단은 사용자가 v0.1과 비교해 시작점, 실행 방향, branch, semantic drill-down과 source 진입 시점을 더 쉽게 이해하는지 평가한 뒤 내린다. STEP 2.5는 `IN PROGRESS`, STEP 3은 `NOT STARTED`로 유지한다.
+
+### v0.2 Visual Model 구체화 — DBeaver ER Diagram reference
+
+사용자 평가에서 원하는 visual metaphor가 radial mind map보다 DBeaver ER Diagram에 가깝다는 구체적인 reference가 확인되었다. 이에 v0.2의 단순 label node를 다시 수정했다. Type은 header와 주요 Method row를 가진 object로, Mapper SQL과 Oracle object도 같은 `Knowledge Object → Members → Relationships` grammar로 표현한다.
+
+관계는 가능한 경우 object 외곽이 아니라 실제 member row에 연결한다. 따라서 `ShipmentImporter.importFile() → ShipmentTransactionService.importShipment()`의 `CALL`, Mapper method → SQL의 `MAPS_TO`, SQL → DB Object의 `DB_ACCESS`를 source evidence와 같은 endpoint로 추적할 수 있다. `DEPENDENCY`는 Type header 사이 관계로 유지한다. Object 선택은 직접 연결된 object와 edge를 강조하고, Method 선택은 해당 caller/callee만 남겨 Detail Panel의 source 위치와 evidence를 연결한다.
+
+Canvas에는 zoom, pan, fit뿐 아니라 object header drag/reposition과 deterministic reset을 추가했다. Zoom level은 overview, normal, detail로 바뀌며 overview에서는 member text와 edge label을 줄여 전체 배치를 우선한다. 이 수정도 기술적 acceptance를 향한 prototype revision이며 실제 이해도 개선 여부는 human evaluation에 남긴다.

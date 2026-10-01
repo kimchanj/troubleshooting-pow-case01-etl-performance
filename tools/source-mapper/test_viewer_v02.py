@@ -16,6 +16,14 @@ class ViewerV02ContractTest(unittest.TestCase):
         for marker in ('id="graph"', 'id="edges"', 'id="nodes"', 'id="fit"', 'id="breadcrumb"'):
             self.assertIn(marker, html)
 
+    def test_er_style_object_member_renderer_is_present(self):
+        script = (ROOT / "viewer-v0.2" / "app.js").read_text(encoding="utf-8")
+        style = (ROOT / "viewer-v0.2" / "styles.css").read_text(encoding="utf-8")
+        for marker in ('knowledge-object', 'member-row', 'MAPS_TO', 'DB_ACCESS', 'data-drag'):
+            self.assertIn(marker, script)
+        self.assertIn('object-header', style)
+        self.assertIn('data-semantic', style)
+
     def test_curated_system_edges_reference_known_nodes(self):
         generated = json.loads((ROOT / "output" / "system-map.json").read_text(encoding="utf-8"))
         curated = json.loads((ROOT / "curation" / "system-map-curation.json").read_text(encoding="utf-8"))

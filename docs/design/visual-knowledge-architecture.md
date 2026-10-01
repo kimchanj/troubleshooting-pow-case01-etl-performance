@@ -37,8 +37,9 @@ Domain analyzer는 원본에서 domain-specific node와 relationship을 추출�
 
 ## 7. Visual Grammar
 
-- **Node:** 정보 실체. shape 안에 domain-specific type과 label을 함께 표시한다.
-- **Edge:** 방향 있는 관계. 모든 edge type을 label로 그리며 `CALL`에 한정하지 않는다.
+- **Knowledge Object:** DBeaver ER Diagram의 table처럼 header와 member body를 가진 정보 실체다. Source domain에서는 Type과 Method, SQL group과 SQL statement, Database와 DB Object로 대응한다.
+- **Member:** object 내부의 관계 anchor다. `ShipmentImporter.importFile()`에서 `ShipmentTransactionService.importShipment()`처럼 실제 method row 사이를 연결한다.
+- **Edge:** 방향 있는 관계. `CALL`, `DEPENDENCY`, `MAPS_TO`, `DB_ACCESS`를 label과 line style로 구분하며 object boundary가 아니라 가능한 경우 member anchor에 연결한다.
 - **Hierarchy:** semantic level과 layered rank로 전체에서 세부로 이동한다.
 - **Evidence:** `STATIC`은 실선, `INFERRED`는 점선, `VERIFIED`는 굵은 선으로 표현하고 text label과 legend를 함께 둔다.
 - **Source reference:** 가능한 node에서 repository-relative path와 line으로 original evidence를 연결한다.
@@ -69,7 +70,9 @@ Paper domain은 claim, section, table과 figure node 및 `SUPPORTS`, `CONTRADICT
 
 ## 13. v0.2 Scope
 
-기존 `viewer/`는 v0.1 실험으로 보존하고 `viewer-v0.2/`를 별도로 둔다. v0.2는 dependency 없는 SVG renderer, 결정적 layered layout, 실제 arrow edge, system flow, type/method drill-down, focus + context, search, breadcrumb, parent, zoom, pan, fit과 detail panel을 구현한다. 현재 작은 graph에서는 longest-path rank와 rank 내 균등 간격이 겹침 없는 결과를 제공한다.
+기존 `viewer/`는 v0.1 실험으로 보존하고 `viewer-v0.2/`를 별도로 둔다. v0.2는 dependency 없는 SVG renderer와 DBeaver ER Diagram에 가까운 object/member canvas를 구현한다. 첫 화면에 여러 Type과 주요 Method를 동시에 보여 주며 method-to-method `CALL`, Mapper method-to-SQL `MAPS_TO`, SQL-to-DB Object `DB_ACCESS`를 row anchor 사이에 그린다. Focus + context, search, breadcrumb, semantic zoom, pan, fit, object header drag/reposition과 detail panel을 지원한다.
+
+초기 좌표는 execution flow를 왼쪽에서 오른쪽으로 읽도록 결정적으로 배치한다. 사용자는 DBeaver diagram처럼 object header를 drag해 겹침이나 개인적인 읽기 흐름을 조정할 수 있고 Reset layout으로 복귀한다. Zoom out은 object header 중심의 overview, normal은 member와 관계, zoom in은 읽기 쉬운 detail로 정보 밀도를 바꾼다.
 
 Dagre/ELK는 더 큰 compound graph와 crossing 최소화에 강하고, Cytoscape.js는 network interaction 생태계가 크다. D3는 낮은 수준의 SVG control을 제공한다. 현재 graph는 작고 계층적이며 offline repository라는 조건 때문에 작은 전용 SVG layout을 선택했다. graph 규모나 cycle이 커져 crossing과 배치 품질이 무너지면 ELK 또는 Dagre 도입을 다시 검토한다.
 
