@@ -110,3 +110,43 @@ STEP 1 시작 전 최종 환경 확인에서는 재로그인된 Windows 토큰�
 - STEP 3에서 어떤 dataset 크기와 값 분포를 재현 가능하게 만들 것인가?
 
 이 질문은 STEP 2 이후 각 범위에서 결정한다. 이번 STEP에서는 ETL 코드, schema, table, dataset과 성능 계측을 만들지 않는다.
+
+## 2026-10-01 — STEP 2: Baseline Implementation
+
+### Baseline을 시작한 이유
+
+STEP 1의 설계를 실제로 실행 가능한 비교 기준으로 만들기 시작했다. 목표는 빠른 구현이 아니라 이후 측정과 진단에서 동일하게 실행할 수 있는 단순하고 기능적으로 올바른 target이다.
+
+### 주요 구현 선택
+
+Web API 없이 `ApplicationRunner`로 명시적인 CSV 파일 한 개를 가져오도록 했다. UTF-8 CSV의 날짜는 ISO-8601 local date-time, 수량은 양의 정수, 단가는 0 이상 소수점 2자리로 확정했다. MyBatis mapper에는 reference 조회와 shipment·item insert에 필요한 SQL만 두었다.
+
+Oracle `FREEPDB1`에는 전용 `ETL_LAB` schema를 사용하고, reference 3종과 shipment 2종 table 및 최소 constraint를 구성하기로 했다. 관리용 SYSDBA와 application 연결을 분리하고, 실제 credential은 환경변수와 SQL*Plus 숨김 입력으로만 전달한다.
+
+### Transaction boundary 판단
+
+같은 `shipment_external_id`의 Shipment Header와 Shipment Items를 하나의 transaction으로 처리한다. 이유는 성능이 아니라 이 관계가 현재 정의한 최소 자연스러운 업무 무결성 경계이기 때문이다. CSV 행 단위 transaction은 shipment의 부분 저장을 허용할 수 있어 사용하지 않는다.
+
+파일 전체를 하나의 transaction으로 묶지도 않는다. file-level all-or-nothing은 현재 요구사항이나 정답으로 가정하지 않는다. 이 선택은 STEP 2 baseline일 뿐이며, 이후 failure injection과 evidence가 file-level atomicity의 필요성을 보여주는지는 열린 질문이다.
+
+### 의도적으로 하지 않은 것
+
+Cache, reference preload, bulk select/load, MyBatis BATCH, parallel/async 처리와 성능 계측을 넣지 않았다. 실제 업무 흐름에 필요한 조회와 저장만 순서대로 수행한다. 대량 dataset도 만들지 않고 correctness fixture를 6행으로 제한했다.
+
+### 구현 중 확인한 점과 아직 모르는 것
+
+Spring transaction proxy가 shipment마다 적용되도록 파일 orchestration과 transaction service를 별도 component로 분리해야 했다. 이 분리는 최적화가 아니라 선택한 무결성 경계를 실제로 적용하기 위한 것이다.
+
+아직 데이터 규모가 커질 때 어느 단계가 지배적인지, shipment 단위 transaction이 failure 상황에서 충분한지, file-level atomicity가 필요한지 모른다. STEP 3에는 재현 가능한 dataset 크기와 분포를, STEP 4에는 baseline 실행·측정 조건을 넘긴다.
+
+### 구현 중 실패와 수정
+
+최초 application user 생성 script에서 SQL*Plus의 기본 substitution verification이 숨김 입력으로 받은 값을 치환된 SQL 문에 표시하는 문제가 발생했다. 해당 credential을 즉시 새 값으로 교체해 무효화하고, 모든 password 입력 script에 `SET VERIFY OFF`를 적용했다. 이후 schema 초기화와 애플리케이션 실행은 secure string을 현재 PowerShell process memory에서만 사용하고 종료 시 지우도록 수정했다. 실제 값은 source, 문서 또는 Git에 기록하지 않았다.
+
+### 실제 correctness 검증
+
+Maven `clean test`에서 6개 테스트가 통과했다. CSV parsing과 validation, line amount 계산, inactive reference 거부, 하나의 shipment header와 여러 item의 관계, 6행 fixture의 shipment별 grouping을 확인했다.
+
+Oracle `FREEPDB1`에서 `ETL_LAB` account가 `OPEN` 상태이며 table 5개와 sequence 5개가 생성된 것을 확인했다. Synthetic reference seed는 Product 4행, Supplier 3행, Warehouse 3행이다. Spring Boot baseline이 fixture를 가져와 Shipment 3행과 Shipment Item 6행을 저장했다.
+
+read-only 검증에서 shipment별 item 수와 금액 합계는 `SHIP-0001` 3개/94.50, `SHIP-0002` 2개/110.00, `SHIP-0003` 1개/150.00이었고 orphan item은 0개였다. 이는 작은 fixture의 기능 검증 결과이며 성능 evidence가 아니다.

@@ -39,7 +39,9 @@ STEP -1  Origin                       [COMPLETE]
    ↓
 STEP  0  Project Foundation           [COMPLETE]
    ↓
-STEP  1  Synthetic ETL Target Design  [IN PROGRESS]  ← CURRENT
+STEP  1  Synthetic ETL Target Design  [COMPLETE]
+   ↓
+STEP  2  Baseline Implementation      [IN PROGRESS]  ← CURRENT
    ↓
   ...
    ↓
@@ -62,13 +64,13 @@ STEP 16  Public Proof of Work         [NOT STARTED]
 - **하지 않는 일:** ETL target을 설계하거나 baseline 코드와 dataset을 미리 구현하지 않는다.
 - **연결:** 이후 설계와 실험이 같은 조건에서 재현될 수 있도록 STEP 1의 토대를 만든다.
 
-### STEP 1 — Synthetic ETL Target Design `[IN PROGRESS]`
+### STEP 1 — Synthetic ETL Target Design `[COMPLETE]`
 
 - **하는 일:** 공개 가능한 synthetic 환경에서 어떤 ETL 문제 구조를 재현할지 설계한다.
 - **하지 않는 일:** 병목 원인이나 최적화 효과를 미리 결론 내리지 않는다.
 - **연결:** 구현할 동작과 관찰 지점을 정의해 STEP 2의 baseline 범위를 정한다.
 
-### STEP 2 — Baseline Implementation `[NOT STARTED]`
+### STEP 2 — Baseline Implementation `[IN PROGRESS]`
 
 - **하는 일:** 평범하지만 데이터 증가 시 성능 문제가 드러날 수 있는 baseline ETL을 구현한다.
 - **하지 않는 일:** 진단 전에 cache, batch 등 최적화를 적용하지 않는다.

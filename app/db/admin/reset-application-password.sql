@@ -1,0 +1,11 @@
+WHENEVER SQLERROR EXIT FAILURE ROLLBACK
+SET VERIFY OFF
+
+ALTER SESSION SET CONTAINER = FREEPDB1;
+
+ACCEPT app_password CHAR PROMPT 'Enter a NEW password for ETL_LAB: ' HIDE
+ALTER USER ETL_LAB IDENTIFIED BY "&app_password";
+
+UNDEFINE app_password
+PROMPT ETL_LAB password changed without echoing the substituted command.
+EXIT SUCCESS
