@@ -262,3 +262,15 @@ Instrumentation decision
 이 흐름은 CASE #01의 작은 baseline을 이해하는 과정에서 나온 working hypothesis일 뿐 universal methodology로 확정하지 않는다. 다른 언어, 더 큰 시스템, 이미 익숙한 시스템과 production incident에서도 mapping phase가 반복해서 필요한지 확인해야 한다. Mapping을 어느 깊이까지 해야 충분한지, 제한된 시간 안에 어떤 artifact가 가장 유용한지도 아직 모른다.
 
 이번 기록은 방법론을 완성된 결과처럼 포장하기 위한 것이 아니다. `Initial Assumption → Actual Experience → Problem With the Initial Model → New Insight → Revised Working Hypothesis → Future Validation Needed`로 판단이 바뀐 과정을 보존한다.
+
+## 2026-10-02 — STEP 2.5 Born: System Mapper Design
+
+Initial Roadmap에는 STEP 2와 STEP 3 사이의 별도 단계가 없었다. STEP 2 baseline을 구현한 뒤 unfamiliar Spring Boot/MyBatis source를 사람이 이해하는 과정에서 entry point, implicit framework call, transaction과 database boundary를 복원하는 인지 비용이 실제로 드러났다.
+
+이 friction은 성능 계측 전에 어디를 관찰할지 선택할 정도의 system map이 필요할 수 있다는 앞선 working hypothesis로 이어졌다. 그 결과 원래 계획에 없던 STEP 2.5 — System Mapping & Runtime Comprehension을 추가했다. 처음부터 도구가 필요하다고 알고 있었던 것이 아니라 STEP 2 review에서 필요 후보가 생긴 것이다.
+
+현재 tool hypothesis는 interactive source map이 unfamiliar system의 구조와 주요 실행 경로를 이해하는 비용을 줄여 troubleshooting 준비를 개선할 수 있다는 것이다. 아직 효과를 검증하지 않았고, 제품명도 정하지 않았다. Working name은 System Mapper다.
+
+구현부터 시작하지 않고 Purpose & Boundary, Information Model, Visual/UI Design을 먼저 작성했다. Java source, mapper annotation SQL, configuration, Oracle DDL과 tests에서 직접 얻을 수 있는 관계를 `STATIC`, framework semantics로 추론한 관계를 `INFERRED`, 향후 debugger로 확인할 관계를 `VERIFIED`로 구분했다. 이 구분은 AI나 analyzer의 추론을 실행 사실처럼 보이지 않게 하기 위한 것이다.
+
+Analyzer와 HTML Viewer는 아직 만들지 않았다. 다음 판단은 최소 map이 실제 code comprehension에 유용한지, 어떤 자동 추출이 신뢰할 수 있는지, human verification evidence를 어떻게 기록할지에 대한 후속 설계와 검증에 달려 있다. STEP 3은 시작하지 않았다.

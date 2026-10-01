@@ -43,6 +43,8 @@ STEP  1  Synthetic ETL Target Design  [COMPLETE]
    ↓
 STEP  2  Baseline Implementation      [COMPLETE]  ← LATEST COMPLETE
    ↓
+STEP 2.5  System Mapping & Runtime Comprehension [IN PROGRESS]  ← CURRENT
+   ↓
   ...
    ↓
 STEP 16  Public Proof of Work         [NOT STARTED]
@@ -76,6 +78,13 @@ STEP 16  Public Proof of Work         [NOT STARTED]
 - **하지 않는 일:** 진단 전에 cache, batch 등 최적화를 적용하지 않는다.
 - **Review activity:** Human Verification / Code Walkthrough / Runtime Mapping으로 실행 지도와 observation point 선택 전 이해 과정을 검토했다. 이는 새로운 STEP이 아니라 STEP 2 review다.
 - **연결:** 실행 가능한 target을 STEP 3의 dataset과 STEP 4의 baseline 실험에 제공한다.
+
+### STEP 2.5 — System Mapping & Runtime Comprehension `[IN PROGRESS]`
+
+- **추가된 이유:** STEP 2 이후 unfamiliar code의 entry point, call path, framework proxy와 DB boundary를 이해하는 실제 friction이 드러나 원래 Roadmap에 없던 단계가 생겼다.
+- **하는 일:** 업무·system·code map을 만들고 runtime verification을 통해 의미 있는 observation point를 선택할 수 있는지 검토한다. 현재는 Purpose & Boundary, Information Model, Visual/UI Design까지만 수행한다.
+- **하지 않는 일:** Analyzer, HTML Viewer, instrumentation, performance measurement 또는 범용 framework를 아직 구현하지 않는다.
+- **연결:** candidate map과 human verification 결과가 이후 계측 위치를 판단하는 데 유용한지 평가하며, STEP 3의 dataset 작업은 아직 시작하지 않는다.
 
 ### STEP 3 — Dataset Generator `[NOT STARTED]`
 
