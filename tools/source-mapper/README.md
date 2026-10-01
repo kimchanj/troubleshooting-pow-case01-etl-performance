@@ -16,6 +16,18 @@ Tests:
 python -m unittest discover -s tools/source-mapper -p "test_*.py"
 ```
 
+## View
+
+Analyzer 실행 후 repository root에서 local server를 시작한다.
+
+```powershell
+python -m http.server 8765 --directory tools/source-mapper
+```
+
+Browser에서 `http://127.0.0.1:8765/viewer/`를 연다. 첫 System View에서 주요 실행 역할 8개를 확인하고, node를 선택해 TYPE → METHOD → SQL → DB Object로 drill-down한다. Detail Panel에서 evidence와 repository-relative source location을 확인하고 breadcrumb로 상위 view에 돌아간다. Search는 이름으로 generated/semantic node를 바로 선택한다.
+
+Viewer는 `output/system-map.json`을 구조적 사실로 읽고 `curation/system-map-curation.json`에서 설명, root node와 type-level execution 관계를 별도로 읽는다. Java source를 직접 parsing하지 않는다. `file://`에서는 JSON fetch가 차단될 수 있으므로 위 HTTP server 방식을 사용한다.
+
 ## Scope
 
 - Java package, type, method, constructor, selected annotation and source line

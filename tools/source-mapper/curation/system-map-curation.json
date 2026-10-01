@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "0.1",
+  "system": {
+    "id": "system:case-01-etl",
+    "label": "CASE #01 Baseline ETL",
+    "description": "A synthetic shipment CSV import flow implemented with Spring Boot, MyBatis, and Oracle."
+  },
+  "semanticNodes": [
+    {"id": "input:baseline-csv", "type": "INPUT", "label": "Shipment CSV", "description": "UTF-8 shipment rows entering the baseline ETL."},
+    {"id": "database:oracle-freepdb1", "type": "DATABASE", "label": "Oracle / ETL_LAB", "description": "Persistence boundary containing reference, shipment, and shipment item objects."}
+  ],
+  "descriptions": {
+    "type:io.github.kimchanj.etlperformance.EtlPerformanceApplication": "Java entry point that starts Spring Boot.",
+    "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner": "Starts one import when an input file is configured.",
+    "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter": "Reads the CSV, groups rows by shipment, and delegates each group.",
+    "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader": "Parses and validates CSV rows into CsvShipmentRow records.",
+    "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService": "Validates references and persists one shipment with all of its items.",
+    "type:io.github.kimchanj.etlperformance.persistence.EtlMapper": "Declares MyBatis queries and inserts at the database boundary."
+  },
+  "systemView": {
+    "nodeIds": [
+      "input:baseline-csv",
+      "type:io.github.kimchanj.etlperformance.EtlPerformanceApplication",
+      "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner",
+      "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter",
+      "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader",
+      "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService",
+      "type:io.github.kimchanj.etlperformance.persistence.EtlMapper",
+      "database:oracle-freepdb1"
+    ],
+    "edges": [
+      {"from": "input:baseline-csv", "to": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader", "type": "DATA_FLOW", "evidence": "INFERRED", "label": "configured input"},
+      {"from": "type:io.github.kimchanj.etlperformance.EtlPerformanceApplication", "to": "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner", "type": "CALL", "evidence": "INFERRED", "label": "Spring startup"},
+      {"from": "type:io.github.kimchanj.etlperformance.etl.BaselineEtlRunner", "to": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter", "type": "CALL", "evidence": "STATIC", "label": "importFile"},
+      {"from": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter", "to": "type:io.github.kimchanj.etlperformance.etl.ShipmentCsvReader", "type": "CALL", "evidence": "STATIC", "label": "read"},
+      {"from": "type:io.github.kimchanj.etlperformance.etl.ShipmentImporter", "to": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService", "type": "CALL", "evidence": "STATIC", "label": "per shipment"},
+      {"from": "type:io.github.kimchanj.etlperformance.etl.ShipmentTransactionService", "to": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper", "type": "CALL", "evidence": "STATIC", "label": "lookup + persist"},
+      {"from": "type:io.github.kimchanj.etlperformance.persistence.EtlMapper", "to": "database:oracle-freepdb1", "type": "DB_ACCESS", "evidence": "INFERRED", "label": "MyBatis / JDBC"}
+    ]
+  }
+}

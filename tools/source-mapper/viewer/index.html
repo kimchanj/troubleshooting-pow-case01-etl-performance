@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CASE #01 · System Map</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div><span class="eyebrow">TROUBLESHOOTING PROOF OF WORK</span><h1>System Mapper <small>v0.1</small></h1></div>
+    <label class="search"><span>Find a node</span><input id="search" type="search" placeholder="ShipmentImporter…" autocomplete="off"><div id="search-results"></div></label>
+  </header>
+  <nav id="breadcrumb" aria-label="Breadcrumb"></nav>
+  <main>
+    <section class="workspace">
+      <div class="section-head"><div><span id="view-kicker" class="eyebrow">SYSTEM VIEW</span><h2 id="view-title">Loading map…</h2></div><p id="view-summary"></p></div>
+      <div id="map" class="map" aria-live="polite"></div>
+    </section>
+    <aside id="detail" class="detail"><p class="muted">Select a node to inspect its source facts.</p></aside>
+  </main>
+  <footer><div class="legend"><span><i class="badge static">S</i> STATIC</span><span><i class="badge inferred">I</i> INFERRED</span><span><i class="badge verified">V</i> VERIFIED</span></div><span id="map-stats"></span></footer>
+  <script src="app.js" defer></script>
+</body>
+</html>

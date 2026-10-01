@@ -286,3 +286,13 @@ Receiver type을 field나 parameter 선언에서 확실히 찾을 수 있는 cal
 두 번 생성한 JSON의 SHA-256이 같았고 5개 analyzer test가 통과했다. 현재 artifact는 Type 11, Method 27, SQL 8, DB Object 10의 56 nodes와 57 edges를 포함한다. 이 숫자는 현재 source snapshot의 결과이지 analyzer의 일반적 완전성을 뜻하지 않는다.
 
 HTML Viewer와 performance overlay는 시작하지 않았다. STEP 2.5-E 전에 사람이 결정할 것은 first viewer에서 어떤 node/edge를 기본 표시할지, `COMPONENT` semantic layer를 generated facts와 어떻게 결합할지, inferred framework edge를 별도 curated data로 둘지다.
+
+## 2026-10-02 — STEP 2.5-E: Interactive System Map Viewer v0.1
+
+Analyzer-generated JSON을 수정하지 않고 별도 curation JSON에 system/input/database 의미, type 설명과 execution-oriented root 관계를 두었다. Generated fact와 사람이 부여한 semantic meaning을 분리하니 Spring startup과 MyBatis/JDBC 같은 관계를 `STATIC`으로 오해하지 않고 `INFERRED`로 표현할 수 있었다.
+
+처음에는 8개 root node를 순서대로 선형 배치하려 했지만 CSV input은 reader로 분기되고 application startup은 runner로 이어져 카드 순서가 실제 관계를 잘못 암시할 수 있었다. 첫 화면을 8개 역할 카드와 evidence가 표시된 별도 execution relationship 목록으로 수정했다. 전체 56 nodes를 한 화면에 graph로 그리지 않고 선택 node와 직접 관련된 최대 12개 generated node만 보여주도록 했다.
+
+Vanilla HTML/CSS/JavaScript와 Python standard HTTP server를 사용해 build chain과 frontend dependency를 추가하지 않았다. 실제 browser smoke test에서 System View 8개 node, ShipmentImporter TYPE view, `importFile()` METHOD view, search로 EtlMapper 이동, Mapper method → Insert SQL → SHIPMENT object drill-down, breadcrumb 복귀, detail/evidence/source 표시를 확인했다. Browser console warning과 error는 없었다.
+
+현재 결과는 구현자가 수행한 smoke test이며 utility가 실제 사용자의 comprehension cost를 줄였다는 증거는 아니다. STEP 2.5-F에서는 사용자가 첫 화면의 방향성, node 용어, drill-down 깊이, SQL 가독성, source navigation과 정보 과부하 여부를 직접 평가해야 한다. Runtime verification과 `VERIFIED` evidence는 아직 시작하지 않았다.
