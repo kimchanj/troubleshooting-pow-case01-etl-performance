@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CASE #01 · Visual Knowledge Map v0.2</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div><span class="eyebrow">SYSTEM MAPPER · PROTOTYPE v0.2</span><h1>Visual Knowledge Map</h1></div>
+    <div class="search"><label for="search">Find a node</label><input id="search" autocomplete="off" placeholder="ShipmentImporter, insertShipment…"><div id="search-results"></div></div>
+  </header>
+  <nav id="breadcrumb" aria-label="Knowledge level"></nav>
+  <main>
+    <section class="workspace">
+      <div class="view-heading"><div><span id="view-kicker" class="eyebrow"></span><h2 id="view-title">Loading map…</h2><p id="view-summary"></p></div>
+        <div class="controls"><button id="parent">↑ Parent</button><button id="zoom-out">−</button><button id="zoom-in">+</button><button id="fit">Fit</button></div>
+      </div>
+      <div id="canvas" tabindex="0" aria-label="Interactive node-link knowledge map">
+        <svg id="graph" role="img" aria-labelledby="graph-title"><title id="graph-title">CASE #01 knowledge graph</title><defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z"></path></marker></defs><g id="viewport"><g id="edges"></g><g id="nodes"></g></g></svg>
+        <div class="map-help">Wheel to zoom · drag empty space to pan · click a node to focus · double-click to expand</div>
+      </div>
+      <div class="legend"><strong>Evidence</strong><span><i class="line static"></i>STATIC</span><span><i class="line inferred"></i>INFERRED</span><span><i class="line verified"></i>VERIFIED</span></div>
+    </section>
+    <aside id="detail"><p>Select a node to inspect its evidence.</p></aside>
+  </main>
+  <footer><span id="map-stats"></span><a href="../viewer/">Compare v0.1 card viewer</a></footer>
+  <script src="app.js"></script>
+</body>
+</html>

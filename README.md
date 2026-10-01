@@ -15,6 +15,7 @@
 - [Project Foundation](docs/foundation/project-foundation.md)
 - [Synthetic ETL Target Design](docs/design/synthetic-etl-target.md)
 - [Baseline ETL Implementation](docs/design/baseline-implementation.md)
+- [Visual Knowledge Architecture v0.2](docs/design/visual-knowledge-architecture.md)
 - [Research Journal](JOURNAL.md)
 
 ## 앞으로의 방향

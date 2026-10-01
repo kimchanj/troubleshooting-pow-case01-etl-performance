@@ -296,3 +296,28 @@ Analyzer-generated JSON을 수정하지 않고 별도 curation JSON에 system/in
 Vanilla HTML/CSS/JavaScript와 Python standard HTTP server를 사용해 build chain과 frontend dependency를 추가하지 않았다. 실제 browser smoke test에서 System View 8개 node, ShipmentImporter TYPE view, `importFile()` METHOD view, search로 EtlMapper 이동, Mapper method → Insert SQL → SHIPMENT object drill-down, breadcrumb 복귀, detail/evidence/source 표시를 확인했다. Browser console warning과 error는 없었다.
 
 현재 결과는 구현자가 수행한 smoke test이며 utility가 실제 사용자의 comprehension cost를 줄였다는 증거는 아니다. STEP 2.5-F에서는 사용자가 첫 화면의 방향성, node 용어, drill-down 깊이, SQL 가독성, source navigation과 정보 과부하 여부를 직접 평가해야 한다. Runtime verification과 `VERIFIED` evidence는 아직 시작하지 않았다.
+
+## 2026-10-02 — STEP 2.5-F: Visual Knowledge Architecture & Prototype v0.2
+
+v0.1은 source에서 interactive viewer까지의 pipeline, search와 drill-down을 기술적으로 연결했다. 그러나 human evaluation에서 첫 화면은 관계를 공간적으로 보여 주는 map보다 interactive card browser에 가까웠다. 정보를 찾을 수 있다는 성공과 전체 구조를 눈으로 파악하기 어렵다는 실패가 동시에 확인되었다. 이 결과를 지우거나 과거의 의도였던 것처럼 바꾸지 않고 `viewer/`를 v0.1로 보존했다.
+
+```text
+Source comprehension friction
+→ System Mapper hypothesis
+→ Analyzer
+→ Viewer v0.1
+→ technically successful
+→ human visual dissatisfaction
+→ card browser ≠ spatial knowledge map
+→ expanded visualization hypothesis
+→ Visual Knowledge Architecture
+→ v0.2 experiment
+```
+
+연구 질문은 source viewer를 넘어, 복잡한 정보를 structured knowledge로 바꾸고 공통 visual grammar로 전체부터 원본 evidence까지 탐색할 수 있는지로 확장되었다. 이 branch는 v0.1 평가에서 발견되었으며 처음부터 정해진 roadmap이 아니다. Source Code만 첫 domain으로 구현하고 Paper domain 등은 가능성 검토에만 남겼다.
+
+v0.2는 별도 `viewer-v0.2/`에 SVG node-link renderer를 만들었다. System flow는 layered layout과 실제 arrow edge로 실행 방향과 branch를 표시한다. Type/Method view는 caller, selected node, method/callee, SQL과 DB object를 focus + context 형태로 배치한다. Search, breadcrumb, parent, zoom, pan, fit과 detail/source evidence를 유지했다. `STATIC`, `INFERRED`, 미래의 `VERIFIED`는 색상뿐 아니라 선 모양과 text label로 구분한다.
+
+현재의 작은 계층형 graph에는 외부 dependency 없이 결정적 longest-path rank와 균등 spacing을 적용했다. 더 큰 graph나 cycle에서 crossing과 layout 품질이 무너지면 Dagre/ELK 같은 layout engine을 검토한다. 현재 schema도 범용 IR로 rewrite하지 않고 domain, hierarchy, provenance와 representation hint의 gap만 문서화했다.
+
+Browser의 기술적·시각적 smoke test는 구현 검증일 뿐 comprehension 가설의 성공 판정이 아니다. 다음 판단은 사용자가 v0.1과 비교해 시작점, 실행 방향, branch, semantic drill-down과 source 진입 시점을 더 쉽게 이해하는지 평가한 뒤 내린다. STEP 2.5는 `IN PROGRESS`, STEP 3은 `NOT STARTED`로 유지한다.

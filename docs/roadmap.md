@@ -82,10 +82,11 @@ STEP 16  Public Proof of Work         [NOT STARTED]
 ### STEP 2.5 — System Mapping & Runtime Comprehension `[IN PROGRESS]`
 
 - **추가된 이유:** STEP 2 이후 unfamiliar code의 entry point, call path, framework proxy와 DB boundary를 이해하는 실제 friction이 드러나 원래 Roadmap에 없던 단계가 생겼다.
-- **하는 일:** 업무·system·code map을 만들고 runtime verification을 통해 의미 있는 observation point를 선택할 수 있는지 검토한다. 현재는 Purpose & Boundary, Information Model, Visual/UI Design까지만 수행한다.
+- **하는 일:** 업무·system·code map을 만들고 runtime verification을 통해 의미 있는 observation point를 선택할 수 있는지 검토한다.
 - **현재 sub-state:** STEP 2.5-D Minimal Source Analyzer 완료. Deterministic `system-map.json`과 ground truth 비교를 만들었다.
-- **현재 sub-state:** STEP 2.5-E Interactive System Map Viewer v0.1 완료. 실제 사용자 평가는 아직 시작하지 않았다.
-- **하지 않는 일:** Analyzer, HTML Viewer, instrumentation, performance measurement 또는 범용 framework를 아직 구현하지 않는다.
+- **현재 sub-state:** STEP 2.5-E Interactive System Map Viewer v0.1 완료. Human evaluation에서 card browser가 공간적 구조를 전달하지 못한다는 문제가 발견되었다.
+- **현재 sub-state:** STEP 2.5-F Visual Knowledge Architecture & Prototype v0.2 구현 및 기술 검증. 실제 사용자 평가는 아직 남아 있다.
+- **하지 않는 일:** runtime instrumentation, performance measurement, 다른 domain analyzer 또는 범용 knowledge platform을 구현하지 않는다.
 - **연결:** candidate map과 human verification 결과가 이후 계측 위치를 판단하는 데 유용한지 평가하며, STEP 3의 dataset 작업은 아직 시작하지 않는다.
 
 ### STEP 3 — Dataset Generator `[NOT STARTED]`
