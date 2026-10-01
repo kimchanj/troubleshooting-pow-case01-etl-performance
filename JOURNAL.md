@@ -150,3 +150,115 @@ Maven `clean test`에서 6개 테스트가 통과했다. CSV parsing과 validati
 Oracle `FREEPDB1`에서 `ETL_LAB` account가 `OPEN` 상태이며 table 5개와 sequence 5개가 생성된 것을 확인했다. Synthetic reference seed는 Product 4행, Supplier 3행, Warehouse 3행이다. Spring Boot baseline이 fixture를 가져와 Shipment 3행과 Shipment Item 6행을 저장했다.
 
 read-only 검증에서 shipment별 item 수와 금액 합계는 `SHIP-0001` 3개/94.50, `SHIP-0002` 2개/110.00, `SHIP-0003` 1개/150.00이었고 orphan item은 0개였다. 이는 작은 fixture의 기능 검증 결과이며 성능 evidence가 아니다.
+
+## 2026-10-01 — STEP 2 Review: System Mapping and Runtime Verification
+
+### Initial Assumption
+
+처음에는 performance diagnosis가 주로 observation과 measurement에서 시작하고, 이후 timer와 counter 같은 diagnostic instrumentation을 추가해 병목 위치를 찾는다고 생각했다. 이 관점에서는 instrumentation이 진단 초반의 핵심 도구에 가까웠다.
+
+### Actual Experience
+
+STEP 2 baseline은 작은 synthetic application이지만, 처음 보는 Java/Spring Boot/MyBatis 코드의 실행을 따라가려면 먼저 업무 목적과 input/output, entry point, 주요 execution path, component 관계, transaction boundary와 Oracle boundary를 확인해야 했다. Call Tree로 정적 구조를 정리한 뒤 debugger의 Call Stack과 Variables를 통해 CSV row가 Java 객체와 shipment group을 거쳐 MyBatis SQL 직전까지 이동하는 경로를 살펴보았다.
+
+이 과정은 전체 class와 method를 완벽하게 이해하는 작업이 아니었다. 다음과 같이 상위 구조에서 문제와 관련된 경로로 좁혀 가는 code comprehension의 drill-down이었다.
+
+```text
+System Purpose
+    ↓
+Input / Output
+    ↓
+Entry Point
+    ↓
+Main Workflow
+    ↓
+Major Components
+    ↓
+Transaction Boundary
+    ↓
+DB / Network / External Boundaries
+    ↓
+Problem-relevant Call Path
+    ↓
+Relevant Methods
+    ↓
+Relevant SQL
+```
+
+### Problem With the Initial Model
+
+system map이 없는 상태에서는 timer나 counter를 어디에 두어야 하는지, 측정값이 어떤 업무 단위와 runtime boundary를 나타내는지 판단하기 어렵다. Diagnostic utility 자체보다 먼저 **어디에서 관찰을 시작해야 하는가**를 결정할 근거가 필요했다.
+
+그렇다고 남이 작성한 모든 코드를 완벽하게 이해해야만 진단할 수 있다는 뜻은 아니다. 현재 경험이 가리키는 것은 의미 있는 observation point를 고를 수 있을 정도로 업무 흐름과 실행 지도를 빠르게 복원해야 할 수 있다는 점이다.
+
+### New Insight
+
+System mapping은 문서를 많이 읽는 사전 절차라기보다, 문제와 관련된 실행 경로의 지도를 만드는 활동으로 볼 수 있다. 정적 Call Tree는 후보 지도이고 debugger에서 확인한 실제 호출, 변수 변화, transaction proxy와 DB boundary가 그 지도를 검증하는 runtime evidence가 된다.
+
+현재 더 자연스러워 보이는 순서는 다음과 같다.
+
+```text
+System Mapping
+    ↓
+Runtime Verification
+    ↓
+Observation Point Selection
+    ↓
+Instrumentation
+```
+
+### Revised Working Hypothesis
+
+CASE #01에서 얻은 method revision candidate는 다음과 같다.
+
+```text
+Unknown System
+    ↓
+Business Mapping
+    ↓
+System Mapping
+    ↓
+Code Mapping
+    ↓
+Runtime Verification
+    ↓
+Observation Point Selection
+    ↓
+Instrumentation
+    ↓
+Measurement
+    ↓
+Drill-down
+    ↓
+Evidence
+    ↓
+Hypothesis
+    ↓
+Experiment
+```
+
+> A troubleshooter does not necessarily need to understand the entire system before diagnosis. The first task may be to reconstruct enough of the system's business and runtime map to know where meaningful observation should begin.
+
+즉 전체 시스템을 완벽하게 이해하는 것이 먼저라기보다, 어디를 관찰해야 하는지 판단할 수 있을 정도로 업무 흐름과 실행 지도를 빠르게 복원하는 능력이 중요할 수 있다.
+
+### Human + AI Collaboration Hypothesis
+
+이번 review에서 AI는 repository와 dependency/call relationship을 탐색하고 candidate Call Tree와 관련 code/SQL 위치를 제시했다. Human의 역할은 그 지도를 이해한 뒤 debugger에서 실제 Call Stack과 Variables를 확인하고, Spring의 보이지 않는 호출과 transaction·database boundary를 runtime evidence로 검증하는 것이었다.
+
+```text
+AI-generated system map
+    ↓
+Human runtime verification
+    ↓
+Revised system map
+    ↓
+Instrumentation decision
+```
+
+이는 AI가 작성한 코드를 이해하지 않은 채 승인하는 방식이 아니다. AI가 탐색 속도를 높이고 Human이 실제 실행 증거로 지도를 확인·수정하며 observation point를 판단하는 협업 가설이다.
+
+### Future Validation Needed
+
+이 흐름은 CASE #01의 작은 baseline을 이해하는 과정에서 나온 working hypothesis일 뿐 universal methodology로 확정하지 않는다. 다른 언어, 더 큰 시스템, 이미 익숙한 시스템과 production incident에서도 mapping phase가 반복해서 필요한지 확인해야 한다. Mapping을 어느 깊이까지 해야 충분한지, 제한된 시간 안에 어떤 artifact가 가장 유용한지도 아직 모른다.
+
+이번 기록은 방법론을 완성된 결과처럼 포장하기 위한 것이 아니다. `Initial Assumption → Actual Experience → Problem With the Initial Model → New Insight → Revised Working Hypothesis → Future Validation Needed`로 판단이 바뀐 과정을 보존한다.

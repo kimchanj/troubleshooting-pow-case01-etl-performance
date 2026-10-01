@@ -41,7 +41,7 @@ STEP  0  Project Foundation           [COMPLETE]
    ↓
 STEP  1  Synthetic ETL Target Design  [COMPLETE]
    ↓
-STEP  2  Baseline Implementation      [IN PROGRESS]  ← CURRENT
+STEP  2  Baseline Implementation      [COMPLETE]  ← LATEST COMPLETE
    ↓
   ...
    ↓
@@ -70,10 +70,11 @@ STEP 16  Public Proof of Work         [NOT STARTED]
 - **하지 않는 일:** 병목 원인이나 최적화 효과를 미리 결론 내리지 않는다.
 - **연결:** 구현할 동작과 관찰 지점을 정의해 STEP 2의 baseline 범위를 정한다.
 
-### STEP 2 — Baseline Implementation `[IN PROGRESS]`
+### STEP 2 — Baseline Implementation `[COMPLETE]`
 
 - **하는 일:** 평범하지만 데이터 증가 시 성능 문제가 드러날 수 있는 baseline ETL을 구현한다.
 - **하지 않는 일:** 진단 전에 cache, batch 등 최적화를 적용하지 않는다.
+- **Review activity:** Human Verification / Code Walkthrough / Runtime Mapping으로 실행 지도와 observation point 선택 전 이해 과정을 검토했다. 이는 새로운 STEP이 아니라 STEP 2 review다.
 - **연결:** 실행 가능한 target을 STEP 3의 dataset과 STEP 4의 baseline 실험에 제공한다.
 
 ### STEP 3 — Dataset Generator `[NOT STARTED]`
